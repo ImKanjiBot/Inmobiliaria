@@ -1,3 +1,7 @@
+<?php
+include 'conexion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,17 +25,17 @@
 <body>
     <h2>Registro de inmueble</h2>
     <form action="guardar_inmueble.php" method="post" enctype="multipart/form-data">
-        <label for="nombre">Dirección del Inmueble:</label>
-        <input type="text" id="direccion" name="direccion" required />
+        <label for="dir_inm">Dirección del Inmueble:</label>
+        <input type="text" id="dir_inm" name="dir_inm" required />
 
-        <label for="direccion">Departamento:</label>
-        <input type="text" id="departamento" name="departamento" required />
+        <label for="barrio_inm">Barrio:</label>
+        <input type="text" id="barrio_inm" name="barrio_inm" required />
 
-        <label for="direccion">Ciudad:</label>
-        <input type="text" id="ciudad" name="ciudad" required />
+        <label for="ciudad_inm">Ciudad:</label>
+        <input type="text" id="ciudad_inm" name="ciudad_inm" required />
 
-        <label for="direccion">Barrio:</label>
-        <input type="text" id="barrio" name="barrio" required />
+        <label for="departamento_inm">Departamento:</label>
+        <input type="text" id="departamento_inm" name="departamento_inm" required />
 
         <label>Ubicación (Latitud y Longitud):</label>
         <input type="text" id="latitud" name="latitud" readonly />
@@ -40,35 +44,93 @@
         <div id="map"></div>
 
         <label for="foto">Foto del Inmueble:</label>
-        <input type="file" id="foto" name="foto" accept="image/*" />
+        <input type="file" id="foto" name="foto" />
 
-        <label for="direccion">web 1:</label>
+        <label for="web_p1">web 1:</label>
         <input type="text" id="web_p1" name="web_p1" required />
 
-        <label for="direccion">web 2:</label>
+        <label for="web_p2">web 2:</label>
         <input type="text" id="web_p2" name="web_p2" required />
 
-        <select name="id_categoria" required>
+        <label>Tipo de inmueble:</label>
+        <select name="cod_tipoinm" required>
             <option value="">Seleccione un tipo de inmueble</option>
-        <?php
+            <?php
+                // Obtener tipos de inmueble
+                $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
+                $resultCat = $conn->query($sqlCat);
+                while ($rowCat = $resultCat->fetch_assoc()){
+                    echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
+                }
+            ?>
+        </select>
 
-        include 'conexion.php';
+        <label for="num_hab">Número de habitaciones:</label>
+        <input type="text" id="num_hab" name="num_hab" required />
 
-        //Obtener todos los productos
-            $sql = "SELECT t.cod_tipoinm, t.nom_tipoinm
-            FROM tipo_inmueble t
-            JOIN inmuebles i ON t.cod_tipoinm = i.cod_tipoinm";
-            $result = $conn->query($sql);
+        <label for="precio_alq">Precio mensual del alquiler:</label>
+        <input type="text" id="precio_alq" name="precio_alq" required />
 
-        $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
-        $resultCat = $conn->query($sqlCat);
-        while ($rowCat = $resultCat->fetch_assoc()){
-            echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
-        }
-        ?>
+        <label>Nombre del propietario:</label>
+        <select name="cod_propietario" required>
+                <option value="">Seleccione el código del propietario</option>
+            <?php
+
+                //Obtener codigo del propietario
+                    $sql = "SELECT * FROM propietarios";
+
+                $sqlCat = "SELECT * FROM propietarios";
+                $resultCat = $conn->query($sqlCat);
+                while ($rowCat = $resultCat->fetch_assoc()){
+                    echo "<option value='".$rowCat['cod_propietario']."'>".$rowCat['nombre_propietario']."</option>";
+                }
+            ?>
+        </select>
+
+        <label>Características del inmueble:</label>
+            <select name="caracteristica_inm" required>
+                <option value="conjunto">Conjunto</option>
+                <option value="urbanizacion">Urbanización</option>
+            </select>
+
+        <label>Notas del Inmueble:</label>
+        <textarea name="notas_inm"></textarea>
+
+        <label>Nombre del empleado:</label>
+        <select name="cod_emp" required>
+                <option value="">Seleccione el código del empleado</option>
+            <?php
+            //Obtener codigo del empleado
+                $sql = "SELECT * FROM empleados";
+
+            $sqlCat = "SELECT * FROM empleados";
+            $resultCat = $conn->query($sqlCat);
+            while ($rowCat = $resultCat->fetch_assoc()){
+                echo "<option value='".$rowCat['cod_emp']."'>".$rowCat['nom_emp']."</option>";
+            }
+            ?>
+        </select>
+
+        <label>Código de la Oficina:</label>
+        <select name="cod_ofi" required>
+                <option value="">Seleccione el código de la oficina</option>
+            <?php
+            //Obtener codigo dela oficina
+                $sql = "SELECT o.cod_ofi
+                FROM oficinas o
+                JOIN inmuebles i ON o.cod_ofi = o.cod_ofi";
+                $result = $conn->query($sql);
+
+            $sqlCat = "SELECT * FROM oficinas";
+            $resultCat = $conn->query($sqlCat);
+            while ($rowCat = $resultCat->fetch_assoc()){
+                echo "<option value='".$rowCat['cod_ofi']."'>".$rowCat['nom_ofi']."</option>";
+            }
+            ?>
+        </select>
 
         <button type="submit">Guardar Inmueble</button>
-
+        
     </form>
 
     <button onclick="window.location.href='consultar_inmueble.php' ">Consultar Inmueble</button>

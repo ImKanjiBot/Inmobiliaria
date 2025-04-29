@@ -1,0 +1,124 @@
+body {
+    font-family: arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+h2 {
+    color: #4caf50;
+}
+form, table {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #4caf50;
+    color: white;
+}
+button, a {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+button:hover, a:hover {
+    background-color: #007bff;
+}
+#date1 {
+    width: 110px;
+    background-color: #4caf50;
+}
+select {
+    width: 150px;
+    padding: 3px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+}
+
+select:focus {
+    border-color: #1565c0;
+    box-shadow: 0 0 8px #1565c080;
+}
+
+option {
+    background: #e3f2fd;
+    color: #000;
+    font-size: 14.5px;
+}
+#end {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#end:hover {
+    background-color: #007bff;
+}
+label {
+    display:block;
+    margin-top:  10px;
+}
+
+.factura-section {
+    margin-bottom: 20px;
+}
+
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+.detalle-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+.detalle-item select, .detalle-item input[type="number"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.crud-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.total-factura {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4caf50;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0,0,0,0.1);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
