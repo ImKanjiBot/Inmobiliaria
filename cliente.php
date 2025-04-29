@@ -3,7 +3,7 @@ include 'conexion.php';
 
 // Obtener todos los productos
 $sql = "SELECT nom_cli, doc_cli,tipo_doc_cli, dir_cli, tel_cli, email_cli, cod_tipoinm, valor_maximo, fecha_creacion, cod_emp, notas_cliente
-        FROM productos p
+        FROM clientes c
         JOIN categoria c ON p.id_categoria = c.id_categoria";
 $result = $conn->query($sql);
 ?>
