@@ -15,7 +15,7 @@ $result = $conn->query($sql);
     <title>Gestión de Productos</title>
 </head>
 <body>
-    <h2>Gestión de Prod</h2>
+    <h2>Gestión de Productos</h2>
 
     <!-- Formulario para Agregar un Producto -->
     <h3>Agregar cliente</h3>
