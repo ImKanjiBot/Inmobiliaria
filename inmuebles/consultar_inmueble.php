@@ -38,6 +38,7 @@ $result = $conn -> query($sql);
                 <th>Notas</th>
                 <th>Empleado</th>
                 <th>Oficina</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -70,6 +71,11 @@ $result = $conn -> query($sql);
                         <td><?php echo $row['notas_inm']; ?></td>
                         <td><?php echo $row['cod_emp']; ?></td>
                         <td><?php echo $row['cod_ofi']; ?></td>
+                        <td>
+                        <a href="editar_proveedor.php?id=<?=$row['cod_inm']?>">Editar</a>
+                         <a href="eliminar_inmueble.php?id=<?=$row['cod_inm']?>">Eliminar</a>
+                        </td>
+
                     </tr>
                 <?php }
             } else { ?>

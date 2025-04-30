@@ -77,8 +77,6 @@ include '../conexion.php';
             <?php
 
                 //Obtener codigo del propietario
-                    $sql = "SELECT * FROM propietarios";
-
                 $sqlCat = "SELECT * FROM propietarios";
                 $resultCat = $conn->query($sqlCat);
                 while ($rowCat = $resultCat->fetch_assoc()){
