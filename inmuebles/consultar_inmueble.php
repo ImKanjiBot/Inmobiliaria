@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 
 //Conslta para obtener los almacenes
 $sql = "SELECT  cod_inm, dir_inm, barrio_inm, ciudad_inm, departamento_inm,  latitud, longitud, foto, web_p1, web_p2, cod_tipoinm, num_hab, precio_alq, cod_propietario, caracteristica_inm, notas_inm, cod_emp, cod_ofi FROM inmuebles";
@@ -38,6 +38,7 @@ $result = $conn -> query($sql);
                 <th>Notas</th>
                 <th>Empleado</th>
                 <th>Oficina</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -70,6 +71,11 @@ $result = $conn -> query($sql);
                         <td><?php echo $row['notas_inm']; ?></td>
                         <td><?php echo $row['cod_emp']; ?></td>
                         <td><?php echo $row['cod_ofi']; ?></td>
+                        <td>
+                        <a href="editar_proveedor.php?id=<?=$row['cod_inm']?>">Editar</a>
+                         <a href="eliminar_inmueble.php?id=<?=$row['cod_inm']?>">Eliminar</a>
+                        </td>
+
                     </tr>
                 <?php }
             } else { ?>

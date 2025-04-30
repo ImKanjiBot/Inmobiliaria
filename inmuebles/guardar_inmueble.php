@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../conexion.php';
 
 //Recibir Datos
 $direccion = $_POST['dir_inm'];
