@@ -13,48 +13,68 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Oficinas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Lista de Oficinas</h2>
     <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Ubicación</th>
-                <th>Foto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['cod_ofi']; ?></td>
-                        <td><?php echo $row['nom_ofi']; ?></td>
-                        <td><?php echo $row['dir_ofi']; ?></td>
-                        <td><?php echo $row['tel_ofi']; ?></td>
-                        <td><?php echo $row['email_ofi']; ?></td>
-                        <td>
-                            <a href="https://www.google.com/maps/search/?api=1&query=<?php echo $row['latitud']; ?>,<?php echo $row['longitud']; ?>" target="_blank">Ver en Maps</a>
-                        </td>
-                        <td>
-                            <?php if ($row['foto_ofi']) { ?>
-                                <img src="<?php echo $row['foto_ofi']; ?>" alt="Foto de la Oficina" width="100" height="100" />
-                            <?php } else { ?>
-                                Sin foto
-                            <?php } ?>
-                        </td>
-                    </tr>
-                <?php }
-            } else { ?>
-                <tr>
-                    <td colspan="5">No hay oficinas registradas.</td>
-                </tr>    
-            <?php } ?>
-        </tbody>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Ubicación</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+        </tr>
+    <?php
+    $sql = "SELECT * FROM oficinas";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) { 
+        echo "<tr>";
+        echo "<td>" . $row["cod_ofi"] . "</td>";
+        echo "<td>" . $row["nom_ofi"] . "</td>";
+        echo "<td>" . $row["dir_ofi"] . "</td>";
+        echo "<td>" . $row["tel_ofi"] . "</td>";
+        echo "<td>" . $row["email_ofi"] . "</td>";
+
+        // Celda de acciones (Maps, Foto, Editar, Eliminar)
+        echo "<td>";
+        
+        // Ver en Maps
+        echo "<a href='https://www.google.com/maps/search/?api=1&query=" . $row["latitud"] . "," . $row["longitud"] . "' target='_blank'>Ver en Maps</a><br>";
+
+        
+        echo "</td>";
+
+        echo "<td>";
+        // Mostrar la foto justo después de Ver en Maps
+        if (!empty($row['foto_ofi'])) {
+            echo "<img src='" . $row['foto_ofi'] . "' alt='Foto de la Oficina' width='100' height='100' /><br>";
+        } else {
+            echo "Sin foto<br>";
+        }
+        
+        echo "</td>";
+
+        
+        echo "<td>";
+
+        // Editar
+        echo "<a href='editar_oficina.php?id=" . $row["cod_ofi"] . "'>Editar</a> ";
+
+        // Eliminar
+        echo "<form action='eliminar_oficina.php' method='post' onsubmit='return confirm(\"¿Estas seguro de eliminar esta oficina?\");'>";
+        echo "<input type='hidden' name='cod_ofi' value='" . $row["cod_ofi"] . "'>";
+        echo "<button type='submit'>Eliminar</button>";
+        echo "</form>";
+        
+        echo "</td>";
+        echo "</tr>";
+    }
+    ?>
     </table>
     
     <a href="oficina_crud.php">Volver al Inicio</a>
