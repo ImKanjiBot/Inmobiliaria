@@ -33,9 +33,6 @@ if ($resultado_empleados->num_rows > 0) {
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <div class=logo-icono>
-        <img src="uploads/logo_casa_meta.png" alt="logo">
-    </div>
     <hr>
     <h1>Registrar Nueva Inspección</h1>
 
