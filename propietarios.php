@@ -16,6 +16,7 @@ if ($conn->connect_error){
 <head>
     <meta charset="UTF-8">
     <title>Registro de Propietario</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Formulario de Registro de Propietario</h2>
@@ -30,7 +31,7 @@ if ($conn->connect_error){
         <label for="tipo_doc">Tipo de Documento:</label>
         <select name="tipo_doc" id="tipo_doc">
             <option value="CC">CC</option>
-            <option value="NIT">NIT</option>
+            <option value="TI">TI</option>
             <option value="CE">CE</option>
         </select>
         <br><br>

@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar Propietario</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Editar Propietario</h1>

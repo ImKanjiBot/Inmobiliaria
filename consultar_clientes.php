@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
+    <title>Consultar Clientes</title>
     <style>
 .clientes-container {
     display: grid; 
@@ -45,16 +45,14 @@
 
 .cliente-acciones a:hover {
     color: #0056b3;
-}</style>
-    <link rel="stylesheet" href="estilos.css"> </head>
+}
+    </style>
+   <link rel="stylesheet" href="styles.css"> 
+</head>
 
  <body>
-
- <div class=logo-icono>
-        <img src="uploads/logo_casa_meta.png" alt="logo">
-    </div>
     <hr>
-    <h1>Lista de Clientes</h1>
+    <h1>Consultar Clientes</h1>
 
     <?php if (isset($_GET['mensaje'])): ?>
         <p style="color: green;"><?php echo $_GET['mensaje']; ?></p>
