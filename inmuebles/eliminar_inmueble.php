@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cod_inm']) && is_numer
         echo "Error en la consulta de eliminación: " . $conn->error;
     }
 } else {
-    echo "<script>alert('Error: No se proporcionó un ID de inmueble válido.'); window.location.href='inmueble_crud.php';</script>";
+    echo "<script>alert('Error: No se proporcionó un ID de inmueble válido.'); window.location.href='consultar_inmueble.php';</script>";
 }
 
 $conn->close();

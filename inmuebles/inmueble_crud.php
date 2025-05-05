@@ -25,6 +25,8 @@ include '../conexion.php';
 <body>
     <h2>Registro de inmueble</h2>
     <form action="guardar_inmueble.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="cod_inmueble" value="<?php echo $cod_inmueble; ?>">
+
         <label for="dir_inm">Dirección del Inmueble:</label>
         <input type="text" id="dir_inm" name="dir_inm" required />
 

@@ -72,7 +72,7 @@ $result = $conn -> query($sql);
                         <td><?php echo $row['cod_emp']; ?></td>
                         <td><?php echo $row['cod_ofi']; ?></td>
                         <td>
-                        <a href="editar_proveedor.php?id=<?=$row['cod_inm']?>">Actualizar</a>
+                        <a href="editar_inmueble.php?id=<?=$row['cod_inm']?>">Editar</a>
                             <form action="eliminar_inmueble.php" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este inmueble?');">
                                 <input type="hidden" name="cod_inm" value="<?= $row['cod_inm'] ?>">
                                 <button type="submit">Eliminar</button>
