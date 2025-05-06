@@ -7,7 +7,7 @@ require_once 'conexion.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recibir los datos del formulario de edición
+    
     $cod_vis = $_POST['cod_vis'];
     $fecha_vis = $_POST['fecha_vis'];
     $cod_cli = $_POST['cod_cli'];
@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cod_inm = $_POST['cod_inm'];
     $comenta_vis = $_POST['comenta_vis'];
 
-    // Preparar la consulta SQL para la actualización
     $sql = "UPDATE visitas SET
             fecha_vis = ?,
             cod_cli = ?,
@@ -28,17 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("siissi", $fecha_vis, $cod_cli, $cod_emp, $cod_inm, $comenta_vis, $cod_vis);
 
     if ($stmt->execute()) {
-        $_SESSION['mensaje'] = "Visita actualizada con éxito.";
+        $_SESSION['mensaje'] = "Visita actualizada éxitosamente.";
         header("Location: consultar_visitas.php");
         exit();
     } else {
-        echo "Error al actualizar la visita: " . $stmt->error;
+        echo "Error no se puede actualizar la visita: " . $stmt->error;
     }
 
     $stmt->close();
 
 } else {
-    echo "Acceso no permitido.";
+    echo "Acceso Denegado.";
 }
 
 $conn->close();

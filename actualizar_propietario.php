@@ -31,7 +31,7 @@ if (isset($_POST['actualizar'])) {
             echo "<p>Propietario actualizado correctamente.</p>";
             echo "<a href='consultar_propietario.php'>Volver a la lista</a>";
         } else {
-            echo "Error al actualizar el propietario: " . $stmt->error;
+            echo "Error no se pudo actualizar el propietario: " . $stmt->error;
         }
 
         $stmt->close();

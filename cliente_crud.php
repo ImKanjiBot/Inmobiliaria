@@ -9,8 +9,6 @@
 </head>
 
 <body>
-    
-
 
     <h1>Crear Nuevo Cliente</h1>
     <form action="crear_clientes.php" method="post">
