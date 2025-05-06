@@ -19,7 +19,7 @@ if (!isset($_SESSION['rol_usuario']) || $_SESSION['rol_usuario'] !== 'admin') {
         <li><a href="consultar_clientes.php">Clientes</a></li>
         <li><a href="consultar_inspeccion.php">Inspección</a></li>
         <li><a href="consultar_contratos.php">Contratos</a></li>
-        <li><a href="consultar_inmueble.php">Inmuebles</a></li>
+        <li><a href="inmuebles\consultar_inmueble.php">Inmuebles</a></li>
         <li><a href="consultar_oficina.php">Oficinas</a></li>
         <li><a href="consultar_visitas.php">Visitas</a></li>
     </ul>
