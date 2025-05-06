@@ -10,8 +10,10 @@ if (!isset($_SESSION['rol_usuario']) || $_SESSION['rol_usuario'] !== 'empleado')
 <html>
 <head>
     <title>Menú de Empleado</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" >
 </head>
 <body>
+    <div class="container">
     <h2>Menú de Empleado</h2>
     <p>Bienvenido, <?php echo $_SESSION['usuario']; ?> (Empleado)</p>
     <ul>
@@ -22,5 +24,6 @@ if (!isset($_SESSION['rol_usuario']) || $_SESSION['rol_usuario'] !== 'empleado')
         <li><a href="consultar_inspeccion.php">Inspección</a></li>
     </ul>
     <p><a href="logout.php">Cerrar Sesión</a></p>
+    </div>
 </body>
 </html>

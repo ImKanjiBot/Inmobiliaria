@@ -10,15 +10,18 @@ if (!isset($_SESSION['rol_usuario']) || $_SESSION['rol_usuario'] !== 'cliente') 
 <html>
 <head>
     <title>Menú de Cliente</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h2>Menú de Cliente</h2>
-    <p>Bienvenido, <?php echo $_SESSION['usuario']; ?> (Cliente)</p>
-    <ul>
-        <li><a href="inmuebles\consultar_inmueble.php">Ver Inmuebles</a></li>
-        <li><a href="consultar_visitas_cliente.php">Mis Visitas</a></li>
-        <li><a href="consultar_contratos_cliente.php">Mis Contratos</a></li>
+    <div class="container">
+        <h2>Menú de Cliente</h2>
+        <p>Bienvenido, <?php echo $_SESSION['usuario']; ?> (Cliente)</p>
+        <ul>
+            <li><a href="inmuebles\consultar_inmueble.php">Ver Inmuebles</a></li>
+            <li><a href="consultar_visitas_cliente.php">Mis Visitas</a></li>
+            <li><a href="consultar_contratos_cliente.php">Mis Contratos</a></li>
         </ul>
-    <p><a href="logout.php">Cerrar Sesión</a></p>
+        <p><a href="logout.php">Cerrar Sesión</a></p>
+    </div>
 </body>
 </html>

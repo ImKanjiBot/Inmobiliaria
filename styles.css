@@ -1,0 +1,78 @@
+/* Estilos generales del cuerpo */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4; /* Un gris claro como fondo general */
+    color: #333; /* Texto principal en un gris oscuro */
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente el contenedor */
+    align-items: flex-start; /* Alinear el contenedor en la parte superior */
+    min-height: 100vh; /* Asegurar que el cuerpo ocupe al menos la altura de la ventana */
+}
+
+/* Estilos del contenedor principal */
+.container {
+    background-color: white; /* Fondo blanco para el contenedor */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 80%; /* Ancho del contenedor */
+    max-width: 960px; /* Ancho máximo del contenedor */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+/* Estilos del encabezado principal */
+h2 {
+    color: #1e88e5; /* Un tono de azul principal para el título */
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el título dentro del contenedor */
+}
+
+/* Estilos del mensaje de bienvenida */
+p {
+    margin-bottom: 15px;
+    text-align: center; /* Centrar el texto dentro del contenedor */
+}
+
+/* Estilos de la lista del menú */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilos de los enlaces (botones del menú) */
+ul li a {
+    display: block;
+    background-color: #2196f3; /* Otro tono de azul para los botones */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+ul li a:hover {
+    background-color: #1976d2; /* Un tono de azul más oscuro al pasar el ratón */
+}
+
+/* Estilos del enlace de cerrar sesión */
+.container p a { /* Especificar que es el párrafo dentro del contenedor */
+    color: #1e88e5;
+    text-decoration: none;
+    display: block; /* Para que ocupe todo el ancho y se centre mejor */
+    text-align: center;
+    margin-top: 20px;
+    transition: color 0.3s ease;
+}
+
+.container p a:hover {
+    color: #1565c0;
+}
