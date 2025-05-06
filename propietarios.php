@@ -69,7 +69,8 @@ if ($conn->connect_error){
         <br><br>
 
         <input type="submit" value="Guardar Propietario" formaction="guardar_propietario.php">
-        <input type="submit" value="consultar propietario" formaction="consultar_propietario.php">
+        <p><a href="consultar_propietario.php">consultar Propietario</a></p>
+
 
 
     </form>

@@ -105,6 +105,6 @@
         ?>
     </div>
 
-    <p><a href="clientes.php">Crear Nuevo Cliente</a></p>
+    <p><a href="cliente_crud.php">Crear Nuevo Cliente</a></p>
 </body>
 </html>
