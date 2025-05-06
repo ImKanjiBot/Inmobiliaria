@@ -75,5 +75,5 @@ if ($conn->connect_error){
 
     </form>
    
-</body>
+</body>|
 </html>

@@ -7,14 +7,13 @@ require_once 'conexion.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recibir los datos del formulario de edición
+    
     $cod_ins = $_POST['cod_ins'];
     $fecha_ins = $_POST['fecha_ins'];
     $cod_inm = $_POST['cod_inm'];
     $cod_emp = $_POST['cod_emp'];
     $comentario = $_POST['comentario'];
 
-    // Preparar la consulta SQL para la actualización
     $sql = "UPDATE inspeccion SET
             fecha_ins = ?,
             cod_inm = ?,
@@ -26,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("siisi", $fecha_ins, $cod_inm, $cod_emp, $comentario, $cod_ins);
 
     if ($stmt->execute()) {
-        $_SESSION['mensaje'] = "Inspección actualizada con éxito.";
+        $_SESSION['mensaje'] = "Inspección actualizada éxitosamente.";
         header("Location: consultar_inspecciones.php");
         exit();
     } else {
-        echo "Error al actualizar la inspección: " . $stmt->error;
+        echo "Error no se pudo actualizar la inspección: " . $stmt->error;
     }
 
     $stmt->close();
 
 } else {
-    echo "Acceso no permitido.";
+    echo "Acceso Denegado.";
 }
 
 $conn->close();
