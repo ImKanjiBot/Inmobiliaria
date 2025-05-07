@@ -83,16 +83,6 @@ include 'conexion.php';
             background-color: #1976d2;
         }
 
-        #nom_tipoinm_mostrar {
-            width: calc(100% - 12px);
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1em;
-            background-color: #eee; /* Estilo para campo no editable */
-            color: #777;
-        }
     </style>
 </head>
 

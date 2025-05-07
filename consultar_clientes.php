@@ -6,93 +6,61 @@
     <title>Consultar Clientes</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        hr {
-            margin: 15px 0;
+        /* Estilos específicos para la tabla de clientes */
+        .tabla-clientes {
+            width: 100%;
+            overflow-x: auto; /* Para hacer la tabla horizontalmente scrollable en pantallas pequeñas */
         }
 
         .tabla-clientes table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Para que el border-radius funcione correctamente con thead/tbody */
         }
 
         .tabla-clientes th,
         .tabla-clientes td {
-            padding: 10px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         .tabla-clientes th {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
+            background-color: #2196f3;
+            color: white;
+            font-weight: bold;
         }
 
-        .tabla-clientes tr:hover {
-            background-color: #f1f1f1;
+        .tabla-clientes tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .tabla-clientes tbody tr:hover {
+            background-color: #f0f0f0;
         }
 
         .tabla-clientes td a {
             text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            transition: color 0.3s;
+            margin-right: 8px;
+            color: #1e88e5;
+            transition: color 0.3s ease;
         }
 
         .tabla-clientes td a:hover {
-            color: #0056b3;
+            color: #1565c0;
         }
 
-        .tabla-clientes td:last-child {
-            text-align: center;
-        }
-
-        .tabla-clientes tr:last-child td {
-            border-bottom: none;
-        }
-
-        p a {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        p a:hover {
-            background-color: #218838;
-        }
-
-        /* Mensaje de éxito */
-        p.mensaje {
+        .mensaje {
             color: green;
-            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #e6ffe6;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -126,21 +94,19 @@
                     require_once 'conexion.php';
 
                     $sql = "SELECT
-                                c.nom_cli,
-                                c.doc_cli,
-                                c.tipo_doc_cli,
-                                c.dir_cli,
-                                c.tel_cli,
-                                c.email_cli,
-                                ti.nom_tipoinm AS tipo_inmueble,
-                                c.valor_maximo,
-                                c.notas_cliente,
-                                e.nom_emp AS empleado_gestion,
-                                c.fecha_creacion,
-                                c.cod_cli
-                            FROM clientes c
-                            INNER JOIN tipo_inmueble ti ON c.cod_tipoinm = ti.cod_tipoinm
-                            INNER JOIN empleados e ON c.cod_emp = e.cod_emp";
+                                    c.nom_cli,
+                                    c.doc_cli,
+                                    c.tipo_doc_cli,
+                                    c.dir_cli,
+                                    c.tel_cli,
+                                    c.email_cli,
+                                    ti.nom_tipoinm AS tipo_inmueble,
+                                    c.valor_maximo,
+                                    e.nom_emp AS empleado_gestion,
+                                    c.cod_cli
+                                FROM clientes c
+                                INNER JOIN tipo_inmueble ti ON c.cod_tipoinm = ti.cod_tipoinm
+                                INNER JOIN empleados e ON c.cod_emp = e.cod_emp";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
