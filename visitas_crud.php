@@ -47,7 +47,7 @@ include 'conexion.php';
 
         <label>Direccion del inmueble:</label>
         <select name="cod_inm" required>
-                <option value="">Seleccione el código del empleado</option>
+                <option value="">Seleccione la direccion del inmueble</option>
             <?php
 
             //Obtener codigo del empleado

@@ -1,3 +1,7 @@
+<?php
+include 'conexion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -98,21 +102,18 @@
         <form action="crear_clientes.php" method="post">
 
             <div>
-                <label for="cod_emp">Empleado de Gestión:</label>
+                <label>Empleado de Gestión:</label>
                 <select id="cod_emp" name="cod_emp" required>
                     <option value="">Seleccionar Empleado</option>
-                    <?php
-                    require_once 'conexion.php';
-                    $sql_empleados = "SELECT cod_emp, nom_emp FROM empleados";
-                    $result_empleados = $conn->query($sql_empleados);
-
-                    if ($result_empleados->num_rows > 0) {
-                        while ($row_empleado = $result_empleados->fetch_assoc()) {
-                            echo '<option value="' . $row_empleado["cod_emp"] . '">' . $row_empleado["nom_emp"] . '</option>';
-                        }
-                    }
-                    ?>
-                </select>
+                    <?php    
+                //Obtener codigo del empleado
+                $sqlCat = "SELECT * FROM empleados";
+                $resultCat = $conn->query($sqlCat);
+                while ($rowCat = $resultCat->fetch_assoc()){
+                    echo "<option value='".$rowCat['cod_emp']."'>".$rowCat['nom_emp']."</option>";
+                }
+                ?>
+            </select><br>
             </div>
 
             <div>
@@ -143,13 +144,21 @@
                 <label for="email_cli">Email:</label>
                 <input type="email" id="email_cli" name="email_cli">
             </div>
+            
             <div>
-                <label for="nom_tipoinm">Tipo de Inmueble Interés:</label>
+                <label>Tipo de Inmueble Interés:</label>
                 <div style="display: flex; align-items: center;">
-                    <select name="nom_tipoinm" id="nom_tipoinm">
-                        <option value="Urbano">Urbano</option>
-                        <option value="Rural">Rural</option>
-                    </select>
+                <select name="cod_tipoinm" required>
+                <option value="">Seleccione un tipo de inmueble</option>
+            <?php
+                // Obtener tipos de inmueble
+                $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
+                $resultCat = $conn->query($sqlCat);
+                while ($rowCat = $resultCat->fetch_assoc()){
+                    echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
+                }
+            ?>
+        </select>
                 </div>
             </div>
             <div>
@@ -165,30 +174,7 @@
         <p><a href="consultar_clientes.php">Volver</a></p>
     </div>
 
-    <script>
-        document.getElementById('cod_tipoinm').addEventListener('input', function() {
-            const codTipoInm = this.value;
-            const nombreTipoInmInput = document.getElementById('nom_tipoinm_mostrar');
 
-            if (codTipoInm) {
-                fetch(`obtener_tipo_inmueble.php?cod_tipoinm=${codTipoInm}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.nom_tipoinm) {
-                            nombreTipoInmInput.value = data.nom_tipoinm;
-                        } else {
-                            nombreTipoInmInput.value = 'Tipo de inmueble no encontrado';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener el tipo de inmueble:', error);
-                        nombreTipoInmInput.value = 'Error al buscar';
-                    });
-            } else {
-                nombreTipoInmInput.value = '';
-            }
-        });
-    </script>
 </body>
 
 </html>

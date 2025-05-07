@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  $notas_cliente = $_POST["notas_cliente"];
 
- $fk_cod_emp_gestion = $_POST["cod_emp"];
+ $cod_emp = $_POST["cod_emp"];
 
 
 $sql = "INSERT INTO clientes (nom_cli, doc_cli, tipo_doc_cli, dir_cli, tel_cli, email_cli, cod_tipoinm, valor_maximo, notas_cliente, cod_emp)
