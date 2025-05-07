@@ -12,7 +12,7 @@ include 'conexion.php';
 <body>
     <h2>Registro de Visitas</h2>
 
-    <form action="guardar_vistas.php" method="POST">
+    <form action="guardar_vistas.php">
 
     <label for="fecha_vis">Fecha de la visita:</label>
     <input type="date" id="fecha_vis" name="fecha_vis"/><br>
@@ -62,7 +62,7 @@ include 'conexion.php';
         <label>Comentarios de la visita</label>
             <textarea id="comenta_vis" name="comenta_vis"></textarea><br><br>
 
-            <button type="submit">Guardar comentario</button>
+            <button type="submit">Guardar Visita</button>
     </form>
             <button onclick="window.location.href='consultar_visitas.php'"> Consultar Visitas</button>
 </body>
