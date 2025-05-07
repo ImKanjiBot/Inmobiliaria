@@ -1,15 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "inmobiliaria";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error){
-    die("conexion fallida:" . $conn->connect_error);
-}
+include 'conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +10,7 @@ if ($conn->connect_error){
 </head>
 <body>
     <h2>Formulario de Registro de Propietario</h2>
-    <form action="procesar_propietario.php" method="POST">
+    <form method="POST">
         <label for="tipo_empresa">Tipo de Empresa:</label>
         <select name="tipo_empresa" id="tipo_empresa">
             <option value="Persona Natural">Persona Natural</option>
@@ -70,8 +60,6 @@ if ($conn->connect_error){
 
         <input type="submit" value="Guardar Propietario" formaction="guardar_propietario.php">
         <p><a href="consultar_propietario.php">consultar Propietario</a></p>
-
-
 
     </form>
    
