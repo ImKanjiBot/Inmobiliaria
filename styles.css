@@ -21,34 +21,35 @@ body {
     max-width: 960px; /* Ancho máximo del contenedor */
     margin-top: 20px; /* Espacio superior */
     margin-bottom: 20px; /* Espacio inferior */
+    text-align: center; /* Centrar el texto de forma general dentro del contenedor */
 }
 
-/* Estilos del encabezado principal */
-h2 {
+/* Estilos del encabezado principal (h1 y h2) */
+.container h1,
+.container h2 {
     color: #1e88e5; /* Un tono de azul principal para el título */
     margin-bottom: 20px;
-    text-align: center; /* Centrar el título dentro del contenedor */
 }
 
-/* Estilos del mensaje de bienvenida */
-p {
+/* Estilos del mensaje de bienvenida y otros párrafos */
+.container p {
     margin-bottom: 15px;
-    text-align: center; /* Centrar el texto dentro del contenedor */
 }
 
 /* Estilos de la lista del menú */
-ul {
+.container ul {
     list-style: none;
     padding: 0;
     margin-bottom: 20px;
+    text-align: left; /* Alinear los elementos de la lista a la izquierda */
 }
 
-ul li {
+.container ul li {
     margin-bottom: 10px;
 }
 
 /* Estilos de los enlaces (botones del menú) */
-ul li a {
+.container ul li a {
     display: block;
     background-color: #2196f3; /* Otro tono de azul para los botones */
     color: white;
@@ -59,17 +60,14 @@ ul li a {
     transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
 }
 
-ul li a:hover {
+.container ul li a:hover {
     background-color: #1976d2; /* Un tono de azul más oscuro al pasar el ratón */
 }
 
-/* Estilos del enlace de cerrar sesión */
-.container p a { /* Especificar que es el párrafo dentro del contenedor */
+/* Estilos del enlace de volver */
+.container p a {
     color: #1e88e5;
     text-decoration: none;
-    display: block; /* Para que ocupe todo el ancho y se centre mejor */
-    text-align: center;
-    margin-top: 20px;
     transition: color 0.3s ease;
 }
 
