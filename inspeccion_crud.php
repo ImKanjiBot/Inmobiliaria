@@ -69,7 +69,7 @@ if ($resultado_empleados->num_rows > 0) {
 
         <div>
             <button type="submit">Guardar Inspección</button>
-            <a href="consultar_inspecciones.php">Cancelar</a>
+            <a href="consultar_inspeccion.php">Consultar inspeccion</a>
         </div>
     </form>
 </body>
