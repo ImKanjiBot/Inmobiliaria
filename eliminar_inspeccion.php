@@ -6,8 +6,9 @@ error_reporting(E_ALL);
 require_once 'conexion.php';
 session_start();
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $cod_ins = $_GET['id'];
+if (isset($_POST['cod_ins']) && is_numeric($_POST['cod_ins'])) {
+    $cod_ins = $_POST['cod_ins'];
+
 
     // Preparar la consulta SQL para la eliminación
     $sql = "DELETE FROM inspeccion WHERE cod_ins = ?";
@@ -17,7 +18,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     if ($stmt->execute()) {
         $_SESSION['mensaje'] = "Inspección eliminada con éxito.";
-        header("Location: consultar_inspecciones.php");
+        header("Location: consultar_inspeccion.php");
         exit();
     } else {
         echo "Error al eliminar la inspección: " . $stmt->error;
@@ -27,7 +28,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 } else {
     $_SESSION['mensaje'] = "ID de inspección no válido.";
-    header("Location: consultar_inspecciones.php");
+    header("Location: consultar_inspeccion.php");
     exit();
 }
 
