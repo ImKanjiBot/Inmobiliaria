@@ -89,7 +89,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <hr>
     <h1>Editar Visita</h1>
 
-    <form action="guardar_cambios_visita.php" method="post">
+    <form action="actualizar_visita.php" method="post">
         <input type="hidden" name="cod_vis" value="<?php echo $visita['cod_vis']; ?>">
 
         <div>
