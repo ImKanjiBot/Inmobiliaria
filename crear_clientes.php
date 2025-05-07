@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  $tipo_doc_cli = $_POST["tipo_doc_cli"];
 
+ $fecha_creacion = $_POST["fecha_creacion"];
+
  $dir_cli = $_POST["dir_cli"];
 
  $tel_cli = $_POST["tel_cli"];
@@ -29,14 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  $cod_emp = $_POST["cod_emp"];
 
 
-$sql = "INSERT INTO clientes (nom_cli, doc_cli, tipo_doc_cli, dir_cli, tel_cli, email_cli, cod_tipoinm, valor_maximo, notas_cliente, cod_emp)
+$sql = "INSERT INTO clientes (nom_cli, doc_cli, fecha_creacion, tipo_doc_cli, dir_cli, tel_cli, email_cli, cod_tipoinm, valor_maximo, notas_cliente, cod_emp)
 
- VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
  $stmt = $conn->prepare($sql);
 
- $stmt->bind_param("sisssssisi", $nom_cli, $doc_cli, $tipo_doc_cli, $dir_cli, $tel_cli, $email_cli, $cod_tipoinm, $valor_maximo, $notas_cliente, $cod_emp);
+ $stmt->bind_param("sissssssisi", $nom_cli, $doc_cli, $tipo_doc_cli, $fecha_creacion, $dir_cli, $tel_cli, $email_cli, $cod_tipoinm, $valor_maximo, $notas_cliente, $cod_emp);
 
  if ($stmt->execute()) {
 

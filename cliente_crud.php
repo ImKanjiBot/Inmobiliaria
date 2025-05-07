@@ -117,6 +117,11 @@ include 'conexion.php';
             </div>
 
             <div>
+                <label for="fecha_creacion">Fecha de Creación:</label>
+                <input type="date" id="fecha_creacion" name="fecha_creacion" required>
+            </div>
+
+            <div>
                 <label for="nom_cli">Nombre Completo:</label>
                 <input type="text" id="nom_cli" name="nom_cli" required>
             </div>
@@ -158,8 +163,8 @@ include 'conexion.php';
                     echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
                 }
             ?>
-        </select>
-                </div>
+            </select>
+            </div>
             </div>
             <div>
                 <label for="valor_maximo">Valor Máximo a Pagar:</label>
