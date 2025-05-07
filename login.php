@@ -1,6 +1,4 @@
 <?php
-session_start();
-include("conexion.php");
 
 // Mostrar errores de sesión si existen
 if (isset($_SESSION['error'])) {
@@ -59,25 +57,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Login de Usuarios</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la página de login */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        button[type="submit"] {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1976d2;
+        }
+
+        .register-link {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #1e88e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .register-link a:hover {
+            color: #1565c0;
+        }
+    </style>
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <?php if (isset($error_login)): ?>
-        <p style="color: red;"><?php echo $error_login; ?></p>
-    <?php endif; ?>
-    <form method="POST" action="">
-        <div>
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required>
-        </div>
-        <br>
-        <div>
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-        </div>
-        <br>
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="register.php">Registrarse</a></p>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <?php if (isset($error_login)): ?>
+            <p class="error-message"><?php echo $error_login; ?></p>
+        <?php endif; ?>
+        <form method="POST" action="">
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p class="register-link">¿No tienes una cuenta? <a href="register.php">Registrarse</a></p>
+    </div>
 </body>
 </html>

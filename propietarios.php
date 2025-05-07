@@ -37,7 +37,7 @@ if ($conn->connect_error){
         <br><br>
 
         <label for="num_doc">Número de Documento:</label>
-        <input type="number" name="num_doc" id="num_doc" required>
+        <input type="text" name="num_doc" id="num_doc" required>
         <br><br>
 
         <label for="nombre_propietario">Nombre del Propietario:</label>

@@ -148,7 +148,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
                 <div>
                     <label for="doc_cli">Documento:</label>
-                    <input type="number" id="doc_cli" name="doc_cli" value="<?php echo $cliente['doc_cli']; ?>">
+                    <input type="text" id="doc_cli" name="doc_cli" value="<?php echo $cliente['doc_cli']; ?>">
                 </div>
 
                 <div>
@@ -178,7 +178,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
                 <div>
                     <label for="cod_tipoinm">Tipo de Inmueble (Código):</label>
-                    <input type="number" id="cod_tipoinm" name="cod_tipoinm" value="<?php echo $cliente['cod_tipoinm']; ?>">
+                    <select name="cod_tipoinm" required>
+                        <option value="">Seleccione una tipo de inmueble</option>
+                        <?php
+                            $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
+                            $resultCat = $conn->query($sqlCat);
+                            while ($rowCat = $resultCat->fetch_assoc()) {
+                            echo "<option value='" . $rowCat['cod_tipoinm'] . "'>" . $rowCat['nom_tipoinm'] . "</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
 
                 <div>

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             WHERE cod_cli = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssiisssi", $nom_cli, $doc_cli, $tipo_doc_cli, $dir_cli, $tel_cli, $email_cli, $cod_tipoinm, $valor_maximo, $notas_cliente, $cod_emp, $cod_cli);
+    $stmt->bind_param("ssssssisssi", $nom_cli, $doc_cli, $tipo_doc_cli, $dir_cli, $tel_cli, $email_cli, $cod_tipoinm, $valor_maximo, $notas_cliente, $cod_emp, $cod_cli);
 
     if ($stmt->execute()) {
         

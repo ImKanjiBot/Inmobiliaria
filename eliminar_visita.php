@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 require_once 'conexion.php';
 session_start();
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $cod_ins = $_GET['id'];
+if (isset($_POST['cod_vis']) && is_numeric($_POST['cod_vis'])) {
+    $cod_ins = $_POST['cod_vis'];
 
     // Preparar la consulta SQL para la eliminación
     $sql = "DELETE FROM visitas WHERE cod_vis = ?";
