@@ -12,7 +12,11 @@ include 'conexion.php';
 <body>
     <h2>Registro de Visitas</h2>
 
+<<<<<<< HEAD
     <form action="guardar_vistas.php">
+=======
+    <form action="guardar_visitas.php" method="POST">
+>>>>>>> 231ece3a45c2496f0a693128cb30ce88889b2a53
 
     <label for="fecha_vis">Fecha de la visita:</label>
     <input type="date" id="fecha_vis" name="fecha_vis"/><br>
