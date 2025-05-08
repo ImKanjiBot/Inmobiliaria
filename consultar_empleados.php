@@ -1,5 +1,3 @@
-consultar empleados
-
 <?php
 include("conexion.php");
 ?>
@@ -76,12 +74,13 @@ include("conexion.php");
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
                         <th>Tipo Doc</th>
+                        <th>Número Doc. </th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
                         <th>Teléfono</th>
                         <th>Email</th>
-                        <th>Dirección</th>
-                        <th>Horas Extra</th>
+                        <th>RH</th>
                         <th>F. Nacimiento</th>
                         <th>Código Cargo</th>
                         <th>Salario</th>

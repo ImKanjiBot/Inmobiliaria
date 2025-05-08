@@ -20,6 +20,8 @@ include 'conexion.php';
     <h2>Formulario de Registro de Empleado</h2>
     <form action="guardar_empleado.php" method="POST">
 
+        <input type="hidden" name="cod_emp">
+
         <label for="tipo_doc">Tipo de Documento:</label>
         <select name="tipo_doc" id="tipo_doc" required>
             <option value="CEDULA">Cédula</option>
@@ -108,7 +110,7 @@ include 'conexion.php';
 
         <input type="submit" value="Guardar Empleado">
     </form>
-    <button onclick="window.location.href='consultar_empleados.php' ">Consultar Inmueble</button>
+    <button onclick="window.location.href='consultar_empleados.php' ">Consultar Empleados</button>
 </body>
 </html>
 </body>
