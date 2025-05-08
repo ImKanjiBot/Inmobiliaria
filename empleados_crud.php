@@ -108,6 +108,7 @@ include 'conexion.php';
 
         <input type="submit" value="Guardar Empleado">
     </form>
+    <button onclick="window.location.href='consultar_empleados.php' ">Consultar Inmueble</button>
 </body>
 </html>
 </body>
