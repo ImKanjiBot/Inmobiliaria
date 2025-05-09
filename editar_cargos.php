@@ -1,12 +1,19 @@
 <?php
+
 include('conexion.php');
 
-if (isset($_GET['cod_cargo'])) {
-    $cod_cargo = $_GET['cod_cargo'];
+$row = null;
+
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $cod_cargo = intval($_GET['id']);
     $sql = "SELECT * FROM cargos WHERE cod_cargo = $cod_cargo";
-    $resultado = mysqli_query($conexion, $sql);
-    $cargo = mysqli_fetch_assoc($resultado);
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -95,18 +102,19 @@ if (isset($_GET['cod_cargo'])) {
     <div class="container">
         <h1>Editar Cargo</h1>
         <hr>
-        <form action="actualizar_cargo.php" method="POST">
-            <input type="hidden" name="cod_cargo" value="<?php echo $cargo['cod_cargo']; ?>">
-            <div>
-                <label for="nom_cargo">Nombre del Cargo:</label>
-                <input type="text" name="nom_cargo" id="nom_cargo" value="<?php echo $cargo['nom_cargo']; ?>" required>
-            </div>
-            
-            <div>
-                <button type="submit">Actualizar</button>
-                <a href="consultar_cargos.php">Cancelar</a>
-            </div>
-        </form>
+        <?php if ($row): ?>
+    <form action="actualizar_cargos.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="cod_cargo" value="<?php echo $row['cod_cargo']; ?>">
+        <label for="nom_cargo">Nombre del Cargo:</label>
+        <input type="text" name="nom_cargo" id="nom_cargo" value="<?php echo $row['nom_cargo']; ?>" required>
+        <div>
+            <button type="submit">Actualizar</button>
+            <a href="consultar_cargos.php">Cancelar</a>
+        </div>
+    </form>
+        <?php else: ?>
+    <p style="color:red; text-align:center;">Cargo no encontrado.</p>
+        <?php endif; ?>
     </div>
 </body>
 </html>

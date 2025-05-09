@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($nom_cargo)) {
         // Preparar la consulta SQL segura
         $sql = "INSERT INTO cargos (nom_cargo) VALUES (?)";
-        $stmt = $conexion->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $nom_cargo);
 
         if ($stmt->execute()) {
@@ -33,5 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Acceso no permitido.";
 }
 
-$conexion->close();
+$conn->close();
 ?>
