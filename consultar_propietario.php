@@ -133,7 +133,7 @@ include("conexion.php");
                 </tbody>
             </table>
         </div>
-        <p><a href="crear_propietario.php">Crear Nuevo Propietario</a></p>
+        <p><a href="propietarios.php">Crear Nuevo Propietario</a></p>
     </div>
 </body>
 </html>

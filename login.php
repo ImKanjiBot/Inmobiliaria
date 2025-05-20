@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+include("conexion.php");
+
 // Mostrar errores de sesión si existen
 if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
