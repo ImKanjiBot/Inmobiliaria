@@ -123,7 +123,7 @@ include("conexion.php");
 
                                     echo "<form action='eliminar_propietario.php' method='post' style='display:inline; margin-left: 8px;'
                                           onsubmit='return confirm(\"¿Estás seguro de eliminar a " . $row["nombre_propietario"] . "?\");'>";
-                                        echo "<input type='hidden' name='num_doc' value='" . $row["num_doc"] . "'>";
+                                        echo "<input type='hidden' name='cod_propietario' value='" . $row["cod_propietario"] . "'>";
                                         echo "<button type='submit'>Eliminar</button>";
                                     echo "</form>";
                                 echo "</td>";

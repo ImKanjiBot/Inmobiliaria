@@ -71,48 +71,141 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Inspección</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        h1 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            display: grid;
+            gap: 15px;
+        }
+
+        form div {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        form label {
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        form input[type="date"],
+        form input[type="text"],
+        form select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        form select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23333" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+
+        form input[type="date"]:focus,
+        form input[type="text"]:focus,
+        form select:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+        }
+
+        form button[type="submit"],
+        form a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        form button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #43a047;
+        }
+
+        form a {
+            background-color: #f44336;
+            color: white;
+        }
+
+        form a:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
-    <hr>
-    <h1>Editar Inspección</h1>
+    <div class="container">
+        <h1>Editar Inspección</h1>
+        <hr>
 
-    <form action="actualizar_inspeccion.php" method="post">
-        <input type="hidden" name="cod_ins" value="<?php echo $inspeccion['cod_ins']; ?>">
+        <form action="actualizar_inspeccion.php" method="post">
+            <input type="hidden" name="cod_ins" value="<?php echo $inspeccion['cod_ins']; ?>">
 
-        <div>
-            <label for="fecha_ins">Fecha de la Inspección:</label>
-            <input type="date" id="fecha_ins" name="fecha_ins" value="<?php echo $inspeccion['fecha_ins']; ?>" required>
-        </div>
+            <div>
+                <label for="fecha_ins">Fecha de la Inspección:</label>
+                <input type="date" id="fecha_ins" name="fecha_ins" value="<?php echo $inspeccion['fecha_ins']; ?>" required>
+            </div>
 
-        <div>
-            <label for="cod_inm">Inmueble:</label>
-            <select id="cod_inm" name="cod_inm" required>
-                <option value="">Seleccionar Inmueble</option>
-                <?php foreach ($inmuebles as $cod => $direccion): ?>
-                    <option value="<?php echo $cod; ?>" <?php if ($inspeccion['cod_inm'] == $cod) echo 'selected'; ?>><?php echo $direccion; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+            <div>
+                <label for="cod_inm">Inmueble:</label>
+                <select id="cod_inm" name="cod_inm" required>
+                    <option value="">Seleccionar Inmueble</option>
+                    <?php foreach ($inmuebles as $cod => $direccion): ?>
+                        <option value="<?php echo $cod; ?>" <?php if ($inspeccion['cod_inm'] == $cod) echo 'selected'; ?>><?php echo $direccion; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-        <div>
-            <label for="cod_emp">Empleado:</label>
-            <select id="cod_emp" name="cod_emp" required>
-                <option value="">Seleccionar Empleado</option>
-                <?php foreach ($empleados as $cod => $nombre): ?>
-                    <option value="<?php echo $cod; ?>" <?php if ($inspeccion['cod_emp'] == $cod) echo 'selected'; ?>><?php echo $nombre; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+            <div>
+                <label for="cod_emp">Empleado:</label>
+                <select id="cod_emp" name="cod_emp" required>
+                    <option value="">Seleccionar Empleado</option>
+                    <?php foreach ($empleados as $cod => $nombre): ?>
+                        <option value="<?php echo $cod; ?>" <?php if ($inspeccion['cod_emp'] == $cod) echo 'selected'; ?>><?php echo $nombre; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-        <div>
-            <label for="comentario">Comentarios:</label>
-            <input type="text" id="comentario" name="comentario" maxlength="255" value="<?php echo $inspeccion['comentario']; ?>">
-        </div>
+            <div>
+                <label for="comentario">Comentarios:</label>
+                <input type="text" id="comentario" name="comentario" maxlength="255" value="<?php echo $inspeccion['comentario']; ?>">
+            </div>
 
-        <div>
-            <button type="submit">Guardar Cambios</button>
-            <a href="consultar_inspecciones.php">Cancelar</a>
-        </div>
-    </form>
+            <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                <button type="submit">Guardar Cambios</button>
+                <a href="consultar_inspecciones.php">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

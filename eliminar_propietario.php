@@ -2,15 +2,15 @@
 include 'conexion.php';
 
 // Verifica si se recibió el número de documento
-if (isset($_POST['num_doc'])) {
-    $num_doc = $_POST['num_doc'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cod_propietario']) && is_numeric($_POST['cod_propietario'])) {
+    $cod_propietario = intval($_POST['cod_propietario']); 
 
     // Preparar la consulta para eliminar
-    $sql = "DELETE FROM propietarios WHERE num_doc = ?";
+    $sql = "DELETE FROM propietarios WHERE cod_propietario = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("s", $num_doc);
+        $stmt->bind_param("i", $cod_propietario);
 
         if ($stmt->execute()) {
             // Redirige de vuelta al listado si la eliminación fue exitosa

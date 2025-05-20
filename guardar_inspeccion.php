@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'conexion.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recibir los datos del formulario
@@ -21,12 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("siis", $fecha_ins, $cod_inm, $cod_emp, $comentario);
 
     if ($stmt->execute()) {
-        $_SESSION['mensaje'] = "Inspección registrada con éxito.";
-        header("Location: consultar_inspecciones.php");
-        exit();
+        echo "Inspeccion registrada con éxito. ";
     } else {
-        echo "Error al guardar la inspección: " . $stmt->error;
+        echo "Error: " . $stmt->error;
     }
+  
 
     $stmt->close();
 } else {
