@@ -42,7 +42,7 @@ $sql = "INSERT INTO clientes (nom_cli, doc_cli, fecha_creacion, tipo_doc_cli, di
 
  if ($stmt->execute()) {
 
- header("Location: cliente_creado.html");
+ header("Location: cliente_creado.php");
 
  exit();
 

@@ -1,17 +1,14 @@
 <?php
 include 'conexion.php';
 session_start();
-session_start();
 if (!isset($_SESSION['rol_usuario'])) {
-    // Si no ha iniciado sesión, redirige a login.php
     header("Location: login.php");
     exit();
-    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +27,9 @@ if (!isset($_SESSION['rol_usuario'])) {
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         form div {
@@ -46,6 +46,7 @@ if (!isset($_SESSION['rol_usuario'])) {
         form input[type="text"],
         form input[type="tel"],
         form input[type="email"],
+        form input[type="date"],
         form select,
         form textarea {
             width: calc(100% - 12px);
@@ -65,9 +66,7 @@ if (!isset($_SESSION['rol_usuario'])) {
             padding-right: 30px;
         }
 
-        form input[type="text"]:focus,
-        form input[type="tel"]:focus,
-        form input[type="email"]:focus,
+        form input:focus,
         form select:focus,
         form textarea:focus {
             outline: none;
@@ -75,21 +74,50 @@ if (!isset($_SESSION['rol_usuario'])) {
             box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
         }
 
+        form button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
         form button[type="submit"] {
             background-color: #2196f3;
             color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
         }
 
         form button[type="submit"]:hover {
             background-color: #1976d2;
         }
 
+        form button.cancel-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        form button.cancel-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .menu-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            width: fit-content;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 
@@ -97,20 +125,18 @@ if (!isset($_SESSION['rol_usuario'])) {
     <div class="container">
         <h1>Crear Nuevo Cliente</h1>
         <form action="crear_clientes.php" method="post">
-
             <div>
                 <label>Empleado de Gestión:</label>
                 <select id="cod_emp" name="cod_emp" required>
                     <option value="">Seleccionar Empleado</option>
                     <?php    
-                //Obtener codigo del empleado
-                $sqlCat = "SELECT * FROM empleados";
-                $resultCat = $conn->query($sqlCat);
-                while ($rowCat = $resultCat->fetch_assoc()){
-                    echo "<option value='".$rowCat['cod_emp']."'>".$rowCat['nom_emp']."</option>";
-                }
-                ?>
-            </select><br>
+                    $sqlCat = "SELECT * FROM empleados";
+                    $resultCat = $conn->query($sqlCat);
+                    while ($rowCat = $resultCat->fetch_assoc()){
+                        echo "<option value='".$rowCat['cod_emp']."'>".$rowCat['nom_emp']."</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
             <div>
@@ -122,10 +148,12 @@ if (!isset($_SESSION['rol_usuario'])) {
                 <label for="nom_cli">Nombre Completo:</label>
                 <input type="text" id="nom_cli" name="nom_cli" required>
             </div>
+
             <div>
                 <label for="doc_cli">Documento:</label>
                 <input type="text" id="doc_cli" name="doc_cli">
             </div>
+
             <div>
                 <label for="tipo_doc_cli">Tipo de Documento:</label>
                 <select id="tipo_doc_cli" name="tipo_doc_cli">
@@ -134,55 +162,55 @@ if (!isset($_SESSION['rol_usuario'])) {
                     <option value="CE">Cédula de Extranjería</option>
                 </select>
             </div>
+
             <div>
                 <label for="dir_cli">Dirección:</label>
                 <input type="text" id="dir_cli" name="dir_cli">
             </div>
+
             <div>
                 <label for="tel_cli">Teléfono:</label>
                 <input type="tel" id="tel_cli" name="tel_cli">
             </div>
+
             <div>
                 <label for="email_cli">Email:</label>
                 <input type="email" id="email_cli" name="email_cli">
             </div>
-            
+
             <div>
                 <label>Tipo de Inmueble Interés:</label>
-                <div style="display: flex; align-items: center;">
                 <select name="cod_tipoinm" required>
-                <option value="">Seleccione un tipo de inmueble</option>
-            <?php
-                // Obtener tipos de inmueble
-                $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
-                $resultCat = $conn->query($sqlCat);
-                while ($rowCat = $resultCat->fetch_assoc()){
-                    echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
-                }
-            ?>
-            </select>
+                    <option value="">Seleccione un tipo de inmueble</option>
+                    <?php
+                    $sqlCat = "SELECT cod_tipoinm, nom_tipoinm FROM tipo_inmueble";
+                    $resultCat = $conn->query($sqlCat);
+                    while ($rowCat = $resultCat->fetch_assoc()){
+                        echo "<option value='".$rowCat['cod_tipoinm']."'>".$rowCat['nom_tipoinm']."</option>";
+                    }
+                    ?>
+                </select>
             </div>
-            </div>
+
             <div>
                 <label for="valor_maximo">Valor Máximo a Pagar:</label>
                 <input type="text" id="valor_maximo" name="valor_maximo" min="0">
             </div>
+
             <div>
                 <label for="notas_cliente">Notas Adicionales:</label>
                 <textarea id="notas_cliente" name="notas_cliente"></textarea>
             </div>
+
             <button type="submit">Guardar Cliente</button>
+            <button type="button" class="cancel-btn" onclick="window.location.href='consultar_clientes.php'">Consultar Clientes</button>
         </form>
-        
-        <p><a href="consultar_clientes.php">Volver</a></p>
 
         <?php
-        // Verificar si la variable de sesión 'rol_usuario' existe
         if (isset($_SESSION['rol_usuario'])) {
             $rolUsuario = $_SESSION['rol_usuario'];
             $urlRedireccion = '';
 
-            // Determinar la URL de redirección según el rol
             switch ($rolUsuario) {
                 case 'admin':
                     $urlRedireccion = 'menu_admin.php';
@@ -194,23 +222,14 @@ if (!isset($_SESSION['rol_usuario'])) {
                     $urlRedireccion = 'menu_cliente.php';
                     break;
                 default:
-                    // Si el rol no coincide con ninguno conocido, podrías redirigir a una página por defecto o mostrar un mensaje de error.
-                    $urlRedireccion = 'login.php'; // Ejemplo de página por defecto
+                    $urlRedireccion = 'login.php';
                     break;
             }
-
-            // Generar el enlace "Volver" dinámicamente
-            echo '<a href="' . $urlRedireccion . '">Menu</a>';
-
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
         } else {
-            // Si la variable de sesión 'rol_usuario' no está definida (por alguna razón),
-            // podrías redirigir a una página de inicio de sesión o a una página por defecto.
-            echo '<a href="login.php">Menu</a>'; // Ejemplo: Volver a la página de inicio de sesión
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
         }
-        ?> 
+        ?>
     </div>
-
-
 </body>
-
 </html>

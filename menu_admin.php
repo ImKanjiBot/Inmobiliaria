@@ -13,6 +13,7 @@ if (!isset($_SESSION['rol_usuario']) || $_SESSION['rol_usuario'] !== 'admin') {
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         .container p a {
+            color: #ffff;
             display: inline-block;
             padding: 10px 15px;
             border-radius: 5px;

@@ -15,7 +15,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     if ($stmt->execute()) {
         
-        header("Location: consultar_clientes.php?mensaje=cliente_eliminado");
+        header("Location: consultar_clientes.php?mensaje=Cliente eliminado del registro");
         exit();
     } else {
         

@@ -1,6 +1,6 @@
 /* Estilos generales del cuerpo */
 body {
-    font-family: sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     background-color: #f4f4f4; /* Un gris claro como fondo general */
     color: #333; /* Texto principal en un gris oscuro */
     margin: 20px;

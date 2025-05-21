@@ -62,6 +62,25 @@
             border: 1px solid #c3e6c3;
             border-radius: 5px;
         }
+
+        .volver-inicio,
+        .menu-btn {
+            display: block;
+            margin: 20px auto 0 auto;
+            text-align: center;
+            color: white;
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            width: fit-content;
+            transition: background-color 0.3s ease;
+        }
+
+        .volver-inicio:hover,
+        .menu-btn:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 
@@ -137,16 +156,14 @@
             </table>
         </div>
         <div>
-        <p><a href="cliente_crud.php">Crear Nuevo Cliente</a></p>
+        <p><a href="cliente_crud.php" class="volver-inicio">Crear Nuevo Cliente</a></p>
         </div>
         <div>
         <?php
-        // Verificar si la variable de sesión 'rol_usuario' existe
         if (isset($_SESSION['rol_usuario'])) {
             $rolUsuario = $_SESSION['rol_usuario'];
             $urlRedireccion = '';
 
-            // Determinar la URL de redirección según el rol
             switch ($rolUsuario) {
                 case 'admin':
                     $urlRedireccion = 'menu_admin.php';
@@ -158,20 +175,14 @@
                     $urlRedireccion = 'menu_cliente.php';
                     break;
                 default:
-                    // Si el rol no coincide con ninguno conocido, podrías redirigir a una página por defecto o mostrar un mensaje de error.
-                    $urlRedireccion = 'login.php'; // Ejemplo de página por defecto
+                    $urlRedireccion = 'login.php';
                     break;
             }
-
-            // Generar el enlace "Volver" dinámicamente
-            echo '<a href="' . $urlRedireccion . '">Menu</a>';
-
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
         } else {
-            // Si la variable de sesión 'rol_usuario' no está definida (por alguna razón),
-            // podrías redirigir a una página de inicio de sesión o a una página por defecto.
-            echo '<a href="login.php">Menu</a>'; // Ejemplo: Volver a la página de inicio de sesión
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
         }
-        ?>    
+        ?>   
         </div>
     </div>
 </body>

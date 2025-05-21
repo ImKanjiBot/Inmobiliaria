@@ -18,6 +18,18 @@ $result = $conn -> query($sql);
     <title>Consulta de Inmuebles</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #f4f4f4; /* Un gris claro como fondo general */
+            color: #333; /* Texto principal en un gris oscuro */
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente el contenedor */
+            align-items: flex-start; /* Alinear el contenedor en la parte superior */
+            min-height: 100vh; /* Asegurar que el cuerpo ocupe al menos la altura de la ventana */
+        }
+
         h2 {
             text-align: center;
             color: #1e88e5;
@@ -64,14 +76,10 @@ $result = $conn -> query($sql);
         }
 
         a {
-            color: #007bff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        a:hover {
-            color: #0056b3;
-        }
 
         button {
             background-color: #f44336;
@@ -100,6 +108,7 @@ $result = $conn -> query($sql);
         .actions a {
             display: inline-block;
             margin-right: 5px;
+            transition: background-color 0.3s ease;
             background-color: #28a745;
             color: white;
             padding: 8px 12px;
@@ -202,7 +211,7 @@ $result = $conn -> query($sql);
             </tbody>
         </table>
 
-        <a href="inmueble_crud.php" class="volver-inicio">Volver a inicio</a>
+        <a href="inmueble_crud.php" class="volver-inicio">Nuevo Inmueble</a>
 
         <?php
         if (isset($_SESSION['rol_usuario'])) {
