@@ -163,7 +163,7 @@ if ($resultado->num_rows > 0) {
                                 <td><?php echo number_format($contrato['deposito_con']); ?></td>
                                 <td><?php echo $contrato['metodo_pago_con']; ?></td>
                                 <td><?php echo $contrato['dato_pago']; ?></td>
-                                <td><?php echo $contrato['archivo_con']; ?></td>
+                                <td><a href="<?php echo $contrato['archivo_con']; ?>" download>Descargar Archivo</a></td>
                                 <td>
                                     <a href="editar_contrato.php?id=<?php echo $contrato['cod_con']; ?>">Editar</a>
                                     <a href="eliminar_contrato.php?id=<?php echo $contrato['cod_con']; ?>" onclick="return confirm('¿Desea eliminar este contrato?')">Eliminar</a>
@@ -175,7 +175,7 @@ if ($resultado->num_rows > 0) {
             </table>
         </div>
 
-        <p class="registrar-nuevo"><a href="contratos_crud.php">Registrar Nuevo Contrato</a></p>
+        <p class="registrar-nuevo"><a href="contratos_crud.php">Volver</a></p>
     </div>
 </body>
 </html>

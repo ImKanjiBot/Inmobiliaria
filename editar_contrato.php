@@ -203,4 +203,44 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
             <div>
                 <label for="meses">Duración (Meses):</label>
-                <input type="number" id="meses" name="meses" min="1"
+                <input type="number" id="meses" name="meses" min="1" value="<?php echo $contrato['meses']; ?>">
+            </div>
+
+            <div>
+                <label for="valor_con">Valor del Contrato:</label>
+                <input type="number" id="valor_con" name="valor_con" min="0" value="<?php echo $contrato['valor_con']; ?>" required>
+            </div>
+
+            <div>
+                <label for="deposito_con">Depósito:</label>
+                <input type="number" id="deposito_con" name="deposito_con" min="0" value="<?php echo $contrato['deposito_con']; ?>">
+            </div>
+
+            <div>
+                <label for="metodo_pago_con">Método de Pago:</label>
+                <select id="metodo_pago_con" name="metodo_pago_con">
+                    <option value="">Seleccionar Método</option>
+                    <option value="transferencia" <?php if ($contrato['metodo_pago_con'] == 'transferencia') echo 'selected'; ?>>Transferencia</option>
+                    <option value="efectivo" <?php if ($contrato['metodo_pago_con'] == 'efectivo') echo 'selected'; ?>>Efectivo</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="dato_pago">Dato de Pago (Ref.):</label>
+                <input type="text" id="dato_pago" name="dato_pago" maxlength="20" value="<?php echo $contrato['dato_pago']; ?>">
+            </div>
+
+            <div>
+                <label for="archivo_con">Archivo del Contrato:</label>
+                <input type="file" id="archivo_con" name="archivo_con">
+                <p>Archivo actual: <?php echo $contrato['archivo_con']; ?></p>
+            </div>
+
+            <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                <button type="submit">Guardar Cambios</button>
+                <a href="consultar_contratos.php">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

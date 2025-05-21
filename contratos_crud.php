@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 // Incluir el archivo de conexión a la base de datos
 require_once 'conexion.php';
 
@@ -55,6 +57,7 @@ if ($resultado_clientes->num_rows > 0) {
 
         form input[type="date"],
         form input[type="number"],
+        form input[type="decimal"], /* Aunque no existe el type="decimal", lo dejamos por claridad */
         form input[type="text"],
         form input[type="file"],
         form select {
@@ -77,6 +80,7 @@ if ($resultado_clientes->num_rows > 0) {
 
         form input[type="date"]:focus,
         form input[type="number"]:focus,
+        form input[type="decimal"]:focus,
         form input[type="text"]:focus,
         form input[type="file"]:focus,
         form select:focus {
@@ -185,9 +189,43 @@ if ($resultado_clientes->num_rows > 0) {
 
             <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                 <button type="submit">Guardar Contrato</button>
-                <a href="consultar_contratos.php">Cancelar</a>
+                <a href="consultar_contratos.php">Consultar Datos</a>
             </div>
         </form>
+
+        <?php
+
+        // Verificar si la variable de sesión 'rol_usuario' existe
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            // Determinar la URL de redirección según el rol
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = 'menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = 'menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = 'menu_cliente.php';
+                    break;
+                default:
+                    // Si el rol no coincide con ninguno conocido, podrías redirigir a una página por defecto o mostrar un mensaje de error.
+                    $urlRedireccion = 'login.php'; // Ejemplo de página por defecto
+                    break;
+            }
+
+            // Generar el enlace "Volver" dinámicamente
+            echo '<a href="' . $urlRedireccion . '">Menu</a>';
+
+        } else {
+            // Si la variable de sesión 'rol_usuario' no está definida (por alguna razón),
+            // podrías redirigir a una página de inicio de sesión o a una página por defecto.
+            echo '<a href="login.php">Menu</a>'; // Ejemplo: Volver a la página de inicio de sesión
+        }
+        ?>
     </div>
 </body>
 </html>

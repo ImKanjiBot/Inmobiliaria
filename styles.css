@@ -66,11 +66,6 @@ body {
 
 /* Estilos del enlace de volver */
 .container p a {
-    color: #f4f4f4;
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-.container p a:hover {
-    color: #1565c0;
 }

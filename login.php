@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require 'conexion.php';
+include("conexion.php");
 
 // Mostrar errores de sesión si existen
 if (isset($_SESSION['error'])) {
