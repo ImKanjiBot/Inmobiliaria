@@ -1,6 +1,12 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
 require_once 'conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    // Si no ha iniciado sesión, redirige a login.php
+    header("Location: login.php");
+    exit();
+    }
 
 // Consultar la tabla de inmuebles para el desplegable
 $sql_inmuebles = "SELECT cod_inm, dir_inm FROM inmuebles";

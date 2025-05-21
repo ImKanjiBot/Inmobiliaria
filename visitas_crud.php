@@ -1,17 +1,11 @@
 <?php
 include 'conexion.php';
-
-session_start(); // Asegúrate de iniciar la sesión en cada página protegida
-
-if (!isset($_SESSION['id_usuario'])) {
-    // El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
-    header("Location: login.php"); // Asumo que tu página de inicio de sesión es login.php
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    // Si no ha iniciado sesión, redirige a login.php
+    header("Location: login.php");
     exit();
-}
-
-// Si la variable de sesión 'id_usuario' existe, el usuario ha iniciado sesión
-// y puedes continuar mostrando el contenido de la página protegida.
-
+    }
 ?>
 
 <!DOCTYPE html>

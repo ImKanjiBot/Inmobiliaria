@@ -1,5 +1,10 @@
 <?php
 include '../conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,15 +81,16 @@ include '../conexion.php';
         }
 
         #map {
-            height: 300px; /* Reduje un poco la altura para el diseño */
+            height: 300px;
             width: 100%;
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-            grid-column: 1 / -1; /* El mapa ocupa toda la fila */
+            grid-column: 1 / -1;
         }
 
         button[type="submit"],
-        button:not([type="submit"]) {
+        button:not([type="submit"]),
+        .menu-btn {
             display: block;
             padding: 10px 15px;
             border-radius: 5px;
@@ -101,7 +107,7 @@ include '../conexion.php';
         button[type="submit"] {
             background-color: #4caf50;
             color: white;
-            grid-column: 1 / -1; /* El botón de guardar ocupa toda la fila */
+            grid-column: 1 / -1;
         }
 
         button[type="submit"]:hover {
@@ -115,6 +121,14 @@ include '../conexion.php';
 
         button:not([type="submit"]):hover {
             background-color: #0056b3;
+        }
+
+        .menu-btn {
+            background-color: #6c757d;
+        }
+
+        .menu-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -223,22 +237,42 @@ include '../conexion.php';
 
         </form>
 
-        <button onclick="window.location.href='consultar_inmueble.php' ">Consultar Inmueble</button>
+        <button onclick="window.location.href='consultar_inmueble.php'">Consultar Inmueble</button>
+
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = '../menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = '../menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = '../menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = '../login.php';
+                    break;
+            }
+            echo '<button class="menu-btn" onclick="window.location.href=\'' . $urlRedireccion . '\'">Ir al Menú</button>';
+        } else {
+            echo '<button class="menu-btn" onclick="window.location.href=\'../login.php\'">Ir al Menú</button>';
+        }
+        ?>
     </div>
 
     <script>
-        //Inicializar el mapa
-        const map = L.map('map').setView([4.6097, -74.0817], 13); //Coordenadas de Bogota, Colombia
-
-        //Agregar capa de OpenStreetMap
+        const map = L.map('map').setView([4.6097, -74.0817], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        //Agregar marcador
         const marker = L.marker([4.6097, -74.0817], { draggable: true }).addTo(map);
 
-        //Actualizar campos de latitud y longitud
         function updateLatLng() {
             const position = marker.getLatLng();
             document.getElementById('latitud').value = position.lat.toFixed(6);
@@ -248,7 +282,6 @@ include '../conexion.php';
 
         marker.on('dragend', updateLatLng);
 
-        //Obtener ubicacion del usuario
         if (navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position) => {
                 const { latitude, longitude } = position.coords;

@@ -1,5 +1,11 @@
 <?php
 include '../conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    // Si no ha iniciado sesión, redirige a login.php
+    header("Location: ../login.php");
+    exit();
+    }
 
 // Verificar si se recibió el ID del inmueble y si es un número válido
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cod_inm']) && is_numeric($_POST['cod_inm'])) {

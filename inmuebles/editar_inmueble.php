@@ -1,5 +1,10 @@
 <?php
 include '../conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -88,21 +93,44 @@ if (isset($_GET['id'])) {
             box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
         }
 
-        button[type="submit"] {
-            background-color: #4caf50;
-            color: white;
+        button[type="submit"], .menu-btn, .cancel-btn {
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s ease;
-            grid-column: 1 / -1;
             margin-top: 20px;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
         }
 
         button[type="submit"]:hover {
             background-color: #43a047;
+        }
+
+        .menu-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .menu-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background-color: #c82333;
         }
 
         p {
@@ -215,7 +243,34 @@ if (isset($_GET['id'])) {
             </select>
 
             <button type="submit">Actualizar Inmueble</button>
+            <button type="button" class="cancel-btn" onclick="window.location.href='inmueble_crud.php'">Cancelar</button>
         </form>
+
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = '../menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = '../menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = '../menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = '../login.php';
+                    break;
+            }
+            echo '<button class="menu-btn" onclick="window.location.href=\'' . $urlRedireccion . '\'">Ir al Menú</button>';
+        } else {
+            echo '<button class="menu-btn" onclick="window.location.href=\'../login.php\'">Ir al Menú</button>';
+        }
+        ?>
     </div>
 </body>
 </html>
+

@@ -1,5 +1,11 @@
 <?php
 include 'conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    // Si no ha iniciado sesión, redirige a login.php
+    header("Location: login.php");
+    exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">

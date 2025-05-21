@@ -1,11 +1,13 @@
 <?php
-
 include '../conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
-//Conslta para obtener los almacenes
 $sql = "SELECT  cod_inm, dir_inm, barrio_inm, ciudad_inm, departamento_inm,  latitud, longitud, foto, web_p1, web_p2, cod_tipoinm, num_hab, precio_alq, cod_propietario, caracteristica_inm, notas_inm, cod_emp, cod_ofi FROM inmuebles";
 $result = $conn -> query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -108,17 +110,23 @@ $result = $conn -> query($sql);
             background-color: #218838;
         }
 
-        .volver-inicio {
+        .volver-inicio,
+        .menu-btn {
             display: block;
-            margin-top: 20px;
+            margin: 20px auto 0 auto;
             text-align: center;
-            color: #007bff;
+            color: white;
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            width: fit-content;
+            transition: background-color 0.3s ease;
         }
 
-        .volver-inicio:hover {
-            color: #0056b3;
+        .volver-inicio:hover,
+        .menu-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -195,6 +203,31 @@ $result = $conn -> query($sql);
         </table>
 
         <a href="inmueble_crud.php" class="volver-inicio">Volver a inicio</a>
+
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = '../menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = '../menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = '../menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = '../login.php';
+                    break;
+            }
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
+        } else {
+            echo '<a class="menu-btn" href="../login.php">Ir al Menú</a>';
+        }
+        ?>
     </div>
 </body>
 </html>
