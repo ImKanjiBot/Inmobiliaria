@@ -1,5 +1,10 @@
 <?php
 include("conexion.php");
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -94,6 +99,24 @@ if (isset($_GET['id'])) {
 
         form input[type="submit"]:hover {
             background-color: #1976d2;
+        }
+
+        p a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 5px;
+        }
+
+        p a {
+            background-color: #f44336;
+            color: white;
+        }
+
+        p a:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>

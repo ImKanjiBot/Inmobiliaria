@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         $_SESSION['mensaje'] = "Inspección actualizada éxitosamente.";
-        header("Location: consultar_inspecciones.php");
+        header("Location: consultar_inspeccion.php");
         exit();
     } else {
         echo "Error no se pudo actualizar la inspección: " . $stmt->error;

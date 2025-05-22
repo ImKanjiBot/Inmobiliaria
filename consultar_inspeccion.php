@@ -1,6 +1,11 @@
 <?php
 
 include 'conexion.php';
+session_start();
+if (!isset($_SESSION['rol_usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
 //Consulta para obtener las inspecciones
 $sql = "SELECT * FROM inspeccion";
@@ -77,17 +82,23 @@ $result = $conn->query($sql);
             background-color: #d32f2f;
         }
 
-        .volver-inicio {
+        .volver-inicio,
+        .menu-btn {
             display: block;
+            margin: 20px auto 0 auto;
             text-align: center;
-            margin-top: 20px;
-            color: #2196f3;
+            color: white;
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            width: fit-content;
+            transition: background-color 0.3s ease;
         }
 
-        .volver-inicio:hover {
-            color: #1976d2;
+        .volver-inicio:hover,
+        .menu-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -117,6 +128,8 @@ $result = $conn->query($sql);
                             echo "<td>" . $row["cod_emp"] . "</td>";
                             echo "<td>" . $row["comentario"] . "</td>";
                             echo "<td>";
+                                echo "<a href='editar_inspeccion.php?id=" . $row["cod_ins"] . "'>Editar</a>";
+                                
                                 echo "<form action='eliminar_inspeccion.php' method='post' onsubmit='return confirm(\"¿Estás seguro de eliminar esta inspección?\");'>";
                                     echo "<input type='hidden' name='cod_ins' value='" . $row["cod_ins"] . "'>";
                                     echo "<button type='submit'>Eliminar</button>";
@@ -128,7 +141,35 @@ $result = $conn->query($sql);
                 </tbody>
             </table>
         </div>
-        <a class="volver-inicio" href="inspeccion_crud.php">Volver al Inicio</a>
+        <div>
+            <a class="volver-inicio" href="inspeccion_crud.php">Volver al Inicio</a>
+        </div>
+        <div>
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = 'menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = 'menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = 'menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = 'login.php';
+                    break;
+            }
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
+        } else {
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
+        }
+        ?>   
+        </div>
     </div>
 </body>
 </html>

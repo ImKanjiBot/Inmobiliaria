@@ -76,13 +76,13 @@ $stmt->close();
         input[type="submit"],
         a {
             display: inline-block;
-            padding: 10px 15px;
+            padding: 5px;
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease, color 0.3s ease;
             margin-top: 10px;
             font-size: 1em;
-            text-align: center;
+            
         }
 
         input[type="submit"] {
@@ -143,10 +143,10 @@ $stmt->close();
             <div>
                 <input type="submit" value="Actualizar Oficina">
             </div>
-            <div>
-                <a href="consultar_oficinas.php">Cancelar</a>
-            </div>
         </form>
+        <div>
+            <a href="consultar_oficina.php">Cancelar</a>
+        </div>
     </div>
 </body>
 </html>

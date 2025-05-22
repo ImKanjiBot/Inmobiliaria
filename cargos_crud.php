@@ -1,7 +1,6 @@
 <?php
 include ('conexion.php');
 session_start();
-session_start();
 if (!isset($_SESSION['rol_usuario'])) {
     // Si no ha iniciado sesión, redirige a login.php
     header("Location: login.php");
@@ -90,6 +89,23 @@ if (!isset($_SESSION['rol_usuario'])) {
         .form-container p a:hover {
             color: #0056b3;
         }
+
+        .menu-btn {
+            display: block;
+            margin: 20px auto 0 auto;
+            text-align: center;
+            color: white;
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            width: fit-content;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +121,32 @@ if (!isset($_SESSION['rol_usuario'])) {
                 <button type="submit">Guardar Cargo</button>
                 <p><a href="consultar_cargos.php">Consultar cargos</a></p>
             </form>
+        </div>
+        <div>
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = 'menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = 'menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = 'menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = 'login.php';
+                    break;
+            }
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
+        } else {
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
+        }
+        ?>   
         </div>
     </div>
 </body>

@@ -138,7 +138,7 @@ include("conexion.php");
                 </tbody>
             </table>
         </div>
-        <p><a href="crear_empleado.php">Crear Nuevo Empleado</a></p>
+        <p><a href="empleados_crud.php">Crear Nuevo Empleado</a></p>
     </div>
 </body>
 </html>

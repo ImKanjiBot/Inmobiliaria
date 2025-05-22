@@ -94,6 +94,24 @@ session_start();
         form p a:hover {
             background-color: #1976d2;
         }
+
+        .menu-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            width: fit-content;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #5a6268;
+        }
+
     </style>
 </head>
 <body>
@@ -158,11 +176,34 @@ session_start();
                 <input type="email" name="email_contacto_prop" id="email_contacto_prop" maxlength="50">
             </div>
 
-            <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 20px;">
-                <input type="submit" value="Guardar Propietario" formaction="guardar_propietario.php">
-                <p><a href="consultar_propietario.php">Consultar Propietario</a></p>
-            </div>
+            <input type="submit" value="Guardar Propietario" formaction="guardar_propietario.php">
+            <p><a href="consultar_propietario.php">Consultar Propietario</a></p>
+            
         </form>
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
+
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = 'menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = 'menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = 'menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = 'login.php';
+                    break;
+            }
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
+        } else {
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
+        }
+        ?>
     </div>
 </body>
 </html>

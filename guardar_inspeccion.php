@@ -21,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Inspeccion registrada con éxito. ";
+        header("Location: consultar_inspeccion.php");
+        exit();
     } else {
         echo "Error: " . $stmt->error;
-    }
+    } 
   
 
     $stmt->close();

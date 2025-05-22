@@ -165,8 +165,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             transition: background-color 0.3s ease;
         }
 
+        form a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
         input[type="submit"]:hover {
             background-color: #43a047;
+        }
+
+        form a {
+            background-color: #f44336;
+            color: white;
+        }
+
+        form a:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -265,8 +284,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 ?>
             </select>
-
-            <input type="submit" value="Guardar Empleado">
+            <div>
+                <input type="submit" value="Guardar Empleado">
+                <a href="consultar_empleados.php">Cancelar</a>
+            </div>
+            
         </form>
     </div>
 </body>

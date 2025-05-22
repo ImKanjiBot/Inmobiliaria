@@ -103,17 +103,23 @@ if ($resultado->num_rows > 0) {
             margin-bottom: 20px;
         }
 
-        .registrar-nuevo {
+        .volver-inicio,
+        .menu-btn {
             display: block;
+            margin: 20px auto 0 auto;
             text-align: center;
-            margin-top: 20px;
-            color: #4caf50;
+            color: white;
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            width: fit-content;
+            transition: background-color 0.3s ease;
         }
 
-        .registrar-nuevo:hover {
-            color: #43a047;
+        .volver-inicio:hover,
+        .menu-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -174,8 +180,35 @@ if ($resultado->num_rows > 0) {
                 </tbody>
             </table>
         </div>
+        <div>
+            <a href="contratos_crud.php" class="volver-inicio">Volver</a></p>
+        </div>
+        <div>
+        <?php
+        if (isset($_SESSION['rol_usuario'])) {
+            $rolUsuario = $_SESSION['rol_usuario'];
+            $urlRedireccion = '';
 
-        <p class="registrar-nuevo"><a href="contratos_crud.php">Volver</a></p>
+            switch ($rolUsuario) {
+                case 'admin':
+                    $urlRedireccion = 'menu_admin.php';
+                    break;
+                case 'empleado':
+                    $urlRedireccion = 'menu_empleado.php';
+                    break;
+                case 'cliente':
+                    $urlRedireccion = 'menu_cliente.php';
+                    break;
+                default:
+                    $urlRedireccion = 'login.php';
+                    break;
+            }
+            echo '<a class="menu-btn" href="' . $urlRedireccion . '">Ir al Menú</a>';
+        } else {
+            echo '<a class="menu-btn" href="login.php">Ir al Menú</a>';
+        }
+        ?>   
+        </div>
     </div>
 </body>
 </html>
